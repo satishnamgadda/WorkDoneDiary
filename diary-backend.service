@@ -1,0 +1,17 @@
+[Unit]
+Description=College Diary Backend - Gunicorn
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/diary-backend
+Environment="PATH=/home/ubuntu/diary-backend/venv/bin"
+EnvironmentFile=/home/ubuntu/diary-backend/.env
+ExecStart=/home/ubuntu/diary-backend/venv/bin/gunicorn --config gunicorn_config.py run:app
+
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
